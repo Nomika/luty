@@ -15,8 +15,6 @@
         .competence-level-low{
             color: red;
         }
-
-        
         .competence-level-high{
             color: green;
         }
@@ -28,6 +26,18 @@
     </style>
 </head>
 <body ng-app="appCompetencies" ng-controller="listController">
+
+    <form name="searchForm">
+<div class="input-group mb-3"></div>
+<div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">Podaj nazwę kompetencji"</span>
+</div>
+<input type="text" ng-model="competenceSearchText" class="form-control" placeholder="..." required>
+<div class="input-group-append">
+    <button class="btn btn-outline-secondary" type="button" ng-disabled="searchForm.$invalid">Szukaj</button>
+</div>
+</form>
+
     <div class="flex-wrap">
         <div class="card" style="width: 12rem;" ng-repeat="competence in competencies| orderBy:'-Name'" ng-if="competence.Level > 0">
             <h4 class="card-title text-center">{{$index + 1}}. {{competence.Name | lowercase| uppercase}}</h4>
@@ -92,6 +102,7 @@
     app.controller("listController", function($scope){
         $scope.competencies = competenciesList;       
         $scope.competenciesLevels = [1,2,3,4,5,6,7];
+        $scope.competenciesLevels = "";
     });
 </script>
 </html>
